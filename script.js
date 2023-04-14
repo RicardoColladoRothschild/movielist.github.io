@@ -13,9 +13,17 @@ const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
 
 //after click on autor, button call an anonimous function, and show author (me) name and info
 autor.addEventListener('click', ()=>{
+    
+
     let divAutorInformation = document.createElement('div');
-    divAutorInformation.classList.add('authorInfo');
-        form1.append(divAutorInformation);
+        if(divAutorInformation.innerHTML===''){
+            divAutorInformation.classList.add('authorInfo');
+            divAutorInformation.innerHTML = '<h4>Ricardo Collado Rothschild<hr></h4> <p>Contacto <br>ricardocolladorothschild@gmail.com <br>[849-711-0425]</p><p>Frontend developer</p> ';
+            form1.append(divAutorInformation);
+            setTimeout(() => {
+                divAutorInformation.classList.add('NoShowauthorInfo');
+              }, 7500); // 
+        }
 
 
 });
