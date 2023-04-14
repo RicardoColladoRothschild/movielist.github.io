@@ -1,0 +1,75 @@
+:root{
+    --primaryColor:yellowgreen;
+    --secondaryColor:greenyellow;
+    --letterColor:rgba(53,86,73);
+    --buttonColor:rgb(221, 255, 169);
+
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+header{
+    width:100%;
+    height: 155px;
+    background-color: var(--secondaryColor);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:25px;
+    
+
+}
+header h1{
+    color:var(--letterColor);
+    font-family:'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+    text-shadow: 0 8px rgba(53,86,73,0.24);
+}
+header form{
+   
+   right:25px;
+   top:95px;
+   
+}
+header form input{
+    width:295px;
+    height: 48px;
+    padding:22px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 8px rgba(53,86,73,0.5);
+}
+body{
+    background-color: var(--primaryColor);
+    font-size: 1.8rem;
+    
+}
+
+.primary-button{
+    position:absolute;
+    top:130px;
+    width:150px;
+    height: 48px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background-color: var(--buttonColor);
+    color: var(--letterColor);
+    border: none;
+    border-radius: 50px;
+    left: calc(100% - 255px);
+    cursor: pointer;
+    box-shadow: 0 8px 8px rgba(53,76,86,0.5);
+}
+.primary-button:hover{
+    background-color: var(--letterColor);
+    color: var(--buttonColor);
+}
