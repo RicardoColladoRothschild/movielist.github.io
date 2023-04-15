@@ -4,9 +4,9 @@
 let autor = document.querySelector('#aboutAuthor');
 let form1 = document.querySelector('#form');
 //API urls
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=7f9f2c096c04f228306760754dd17a92&query="';
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7f9f2c096c04f228306760754dd17a92&page=1';
-const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+const Api_responds_search = 'https://api.themoviedb.org/3/search/movie?api_key=7f9f2c096c04f228306760754dd17a92&query="';
+const API_Main_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7f9f2c096c04f228306760754dd17a92&page=1';
+const ruta_imagen = 'https://image.tmdb.org/t/p/w1280';
 
 
 const search = document.getElementById('search')
@@ -14,7 +14,7 @@ let form = document.querySelector('#form');
 const main = document.getElementById('main');
 
 //Show the movies list once the page is loaded
-getMovies(API_URL);
+getMovies(API_Main_URL);
 
 //function to get movies list, either by search api or for just showing in when the page load.
 async function getMovies(url){
@@ -43,7 +43,7 @@ function showMovies(movies){
 
                     //now we are about to do som DOM handle pretty cool:
                         movieEl.innerHTML = `
-                            <img src="${IMG_PATH + poster_path}" alt="${title}">
+                            <img src="${ruta_imagen + poster_path}" alt="${title}">
                                 <div class="movie-info">
                                     <h3>${title}</h3>
                                         <span class="${getClassByRate(vote_average)}">${vote_average}</span>
@@ -104,7 +104,7 @@ form.addEventListener('submit',(event)=>{
 
         if(searchTerm && searchTerm !==''){
             
-            getMovies(SEARCH_API + searchTerm);
+            getMovies(Api_responds_search + searchTerm);
             search.value = '';
         }else{
             window.location.reload();
