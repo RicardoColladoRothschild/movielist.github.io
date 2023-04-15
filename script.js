@@ -9,9 +9,9 @@ const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
 
 
-let searchField = document.querySelector('#search');
+const search = document.getElementById('search')
 let form = document.querySelector('#form');
-let main = document.querySelector('#main');
+const main = document.getElementById('main');
 
 //Show the movies list once the page is loaded
 getMovies(API_URL);
@@ -28,7 +28,7 @@ async function getMovies(url){
 
 //we receive the data already process by the fetch method called inside getMovies(). and since its an array of objects, we are goingt o work with it
 function showMovies(movies){
-    main.innetHtml = '';
+    main.innerHTML = '';
 
         movies.forEach((movie=>{
 
@@ -44,7 +44,15 @@ function showMovies(movies){
                     //now we are about to do som DOM handle pretty cool:
                         movieEl.innerHTML = `
                             <img src="${IMG_PATH + poster_path}" alt="${title}">
-
+                                <div class="movie-info">
+                                    <h3>${title}</h3>
+                                        <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+                                
+                                </div>
+                                <div class="overview">
+                                    <h3>Overview</h3>
+                                    ${overview}
+                                </div>
                         `;
                         main.appendChild(movieEl);
                         console.log(title);
@@ -58,6 +66,18 @@ function showMovies(movies){
 
 }
 
+/*Among the information with fetch from the api, there is a average vote information, we are going to give different color
+depending on the score, by creating a method that return the color nme, then on he css, we are going to create a class using that name
+and provide color to a text (or numbers)*/
+function getClassByRate(vote){
+    if(vote>=8){
+        return 'green';
+    }else if(vote>=5){
+        return 'orange';
+    }else{
+        return 'red';
+    }
+}
 
 //after click on autor, button call an anonimous function, and show author (me) name and info
 autor.addEventListener('click', ()=>{
@@ -73,5 +93,21 @@ autor.addEventListener('click', ()=>{
               }, 7500); // 
         }
 
+
+});
+
+form.addEventListener('submit',(event)=>{
+    //avoiding reload
+    event.preventDefault();
+
+    const searchTerm = search.value;
+
+        if(searchTerm && searchTerm !==''){
+            
+            getMovies(SEARCH_API + searchTerm);
+            search.value = '';
+        }else{
+            window.location.reload();
+        }
 
 });
